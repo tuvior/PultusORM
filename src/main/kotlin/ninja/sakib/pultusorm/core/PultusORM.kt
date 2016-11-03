@@ -205,4 +205,13 @@ class PultusORM {
     fun count(clazz: Any): Long {
         return PultusORMQuery(connection!!).count(clazz)
     }
+
+    /**
+     * Method to close database connection
+     */
+    fun close() {
+        if (connection != null) {
+            connection!!.close()
+        }
+    }
 }

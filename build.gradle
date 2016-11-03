@@ -1,8 +1,8 @@
 group 'ninja.sakib'
-version 'beta-0.0.4'
+version 'beta-0.0.7'
 
 buildscript {
-    ext.kotlin_version = '1.0.3'
+    ext.kotlin_version = '1.0.4'
 
     repositories {
         mavenCentral()
@@ -41,7 +41,7 @@ dependencies {
     compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.14.2.1'
     compile 'org.sqldroid:sqldroid:1.0.3'
 
-    //compile group: 'org.jetbrains.dokka', name: 'dokka-gradle-plugin', version: '0.9.9'
+    compile group: 'org.jetbrains.dokka', name: 'dokka-gradle-plugin', version: '0.9.9'
 
     testCompile 'junit:junit:4.12'
 }
