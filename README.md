@@ -26,7 +26,7 @@ allprojects {
 And
 ```
 dependencies {
-    compile 'ninja.sakib:PultusORM:beta-0.0.6'
+    compile 'ninja.sakib:PultusORM:beta-0.0.8'
 }
 ```
 
@@ -44,13 +44,13 @@ And
 <dependency>
     <groupId>ninja.sakib</groupId>
     <artifactId>PultusORM</artifactId>
-    <version>beta-0.0.6</version>
+    <version>beta-0.0.8</version>
 </dependency>
 ```
 
-In case you need jar [download](https://jitpack.io/ninja/sakib/PultusORM/beta-0.0.6/PultusORM-beta-0.0.6.jar).
+In case you need jar [download](https://jitpack.io/ninja/sakib/PultusORM/beta-0.0.8/PultusORM-beta-0.0.8.jar).
 
-[More option...](https://jitpack.io/#ninja.sakib/PultusORM/beta-0.0.6)
+[More option...](https://jitpack.io/#ninja.sakib/PultusORM/beta-0.0.8)
 
 ### Examples
 
@@ -72,6 +72,7 @@ student.name = "Sakib Sayem"
 student.department = "CSE"
 student.cgpa = 2.3
 pultusORM.save(student)
+pultusORM.close()
 ```
 
 ##### Retrieve Value
