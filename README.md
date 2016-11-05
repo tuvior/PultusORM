@@ -1,7 +1,8 @@
 # PultusORM [![](https://jitpack.io/v/ninja.sakib/PultusORM.svg)](https://jitpack.io/#ninja.sakib/PultusORM)
-PultusORM is a sqlite ORM library for kotlin & Android.
+PultusORM is a sqlite ORM library for kotlin , Android & Java.
 
 Status : Active<br>
+Version : 1.1
 
 ##
 Features Implemented,
@@ -26,7 +27,7 @@ allprojects {
 And
 ```
 dependencies {
-    compile 'ninja.sakib:PultusORM:beta-0.0.8'
+    compile 'ninja.sakib:PultusORM:1.1'
 }
 ```
 
@@ -44,13 +45,15 @@ And
 <dependency>
     <groupId>ninja.sakib</groupId>
     <artifactId>PultusORM</artifactId>
-    <version>beta-0.0.8</version>
+    <version>1.1</version>
 </dependency>
 ```
 
-In case you need jar [download](https://jitpack.io/ninja/sakib/PultusORM/beta-0.0.8/PultusORM-beta-0.0.8.jar).
+In case you need jar [download](https://jitpack.io/ninja/sakib/PultusORM/1.1/PultusORM-1.1.jar).
 
-[More option...](https://jitpack.io/#ninja.sakib/PultusORM/beta-0.0.8)
+** If you want to use this library in a java project please add kotlin runtime library too.
+
+[More option...](https://jitpack.io/#ninja.sakib/PultusORM/1.1)
 
 ### Examples
 
@@ -134,7 +137,7 @@ pultusORM.update(Student(), updater)
 pultusORM.delete(Student())
 ```
 
-**Check [Wiki](https://github.com/s4kibs4mi/PultusORM/wiki) for more examples & [API docs](http://sakib.ninja/PultusORM/)**
+**[Check out more examples & API docs here](http://sakib.ninja/PultusORM/)**
 
 #
 #####Note :
