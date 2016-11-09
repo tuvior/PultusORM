@@ -72,7 +72,7 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="509">
+              <first_editor relative-caret-position="2460">
                 <caret line="164" column="0" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
                 <folding />
               </first_editor>
@@ -84,7 +84,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/docs/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-464">
+            <state relative-caret-position="184">
               <caret line="126" column="0" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
               <folding />
             </state>
@@ -519,7 +519,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="722" />
+    <option name="height" value="725" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -551,6 +551,7 @@
     <panes>
       <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -673,7 +674,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1323,14 +1323,8 @@
       <workItem from="1476728224898" duration="770000" />
       <workItem from="1476901843267" duration="515000" />
       <workItem from="1478180343799" duration="1188000" />
-      <workItem from="1478327359489" duration="891000" />
-    </task>
-    <task id="LOCAL-00030" summary="documentation site updated">
-      <created>1476549789654</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1476549789654</updated>
+      <workItem from="1478327359489" duration="1510000" />
+      <workItem from="1478717156803" duration="23000" />
     </task>
     <task id="LOCAL-00031" summary="documentation site updated">
       <created>1476550373633</created>
@@ -1668,7 +1662,14 @@
       <option name="project" value="LOCAL" />
       <updated>1478328061430</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="library site updated to 1.1">
+      <created>1478328301700</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1478328301700</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1704,10 +1705,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64405000" />
+    <option name="totallyTimeSpent" value="65047000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="722" extended-state="6" />
+    <frame x="0" y="23" width="1280" height="725" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1771,7 +1772,8 @@
     <MESSAGE value="connection close method added" />
     <MESSAGE value="version updated to 0.0.8" />
     <MESSAGE value="readme updated for version 1.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="readme updated for version 1.1" />
+    <MESSAGE value="library site updated to 1.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="library site updated to 1.1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1925,7 +1927,7 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="509">
+          <first_editor relative-caret-position="2460">
             <caret line="164" column="0" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
             <folding />
           </first_editor>
@@ -1943,7 +1945,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-464">
+        <state relative-caret-position="184">
           <caret line="126" column="0" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
           <folding />
         </state>
