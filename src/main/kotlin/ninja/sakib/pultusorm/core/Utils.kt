@@ -4,10 +4,7 @@ import com.eclipsesource.json.Json
 import com.eclipsesource.json.JsonObject
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import ninja.sakib.pultusorm.annotations.AutoIncrement
-import ninja.sakib.pultusorm.annotations.NotNull
-import ninja.sakib.pultusorm.annotations.PrimaryKey
-import ninja.sakib.pultusorm.annotations.Unique
+import ninja.sakib.pultusorm.annotations.*
 import ninja.sakib.pultusorm.exceptions.PultusORMException
 import java.lang.reflect.Field
 import java.lang.reflect.Type
@@ -161,6 +158,10 @@ fun toPrimaryKey(value: Field): String {
     return ""
 }
 
+fun isIgnoreField(value: Field): Boolean {
+    return value.getAnnotation(Ignore::class.java) != null
+}
+
 /**
  * Method to check whether type is auto increment annotated
  * @param value type
@@ -245,6 +246,10 @@ fun jsonAsObject(clazz: Any, value: JsonObject): Any {
     return objectToJsonConverter.fromJson(value.toString(), clazz.javaClass)
 }
 
+/**
+ * Method to check whether platform is Android or not
+ * @return Boolean
+ */
 fun isAndroidPlatform(): Boolean {
     try {
         Class.forName("android.app.Activity")

@@ -1,6 +1,7 @@
 package ninja.sakib.pultusorm.models
 
 import ninja.sakib.pultusorm.annotations.AutoIncrement
+import ninja.sakib.pultusorm.annotations.Ignore
 import ninja.sakib.pultusorm.annotations.PrimaryKey
 
 /**
@@ -15,6 +16,7 @@ class Student {
     @AutoIncrement
     var studentId: Int = 0
     var name: String? = null
+    @Ignore
     var department: String? = null
     var cgpa: Double = 0.0
 }

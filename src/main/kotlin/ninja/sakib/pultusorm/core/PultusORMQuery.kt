@@ -98,25 +98,27 @@ class PultusORMQuery(connection: Connection) {
                 val it: JsonObject = JsonObject()
 
                 for (field in clazz.javaClass.declaredFields) {
-                    if (isString(field.genericType)) {
-                        it.add(field.name, result.getString(field.name))
-                    } else if (isInt(field.genericType)) {
-                        it.add(field.name, result.getInt(field.name))
-                    } else if (isDouble(field.genericType)) {
-                        it.add(field.name, result.getDouble(field.name))
-                    } else if (isFloat(field.genericType)) {
-                        it.add(field.name, result.getFloat(field.name))
-                    } else if (isLong(field.genericType)) {
-                        it.add(field.name, result.getLong(field.name))
-                    } else if (isChar(field.genericType)) {
-                        it.add(field.name, result.getString(field.name))
-                    } else if (isBoolean(field.genericType)) {
-                        val temp = result.getInt(field.name)
-                        if (temp == 0)
-                            it.add(field.name, false)
-                        else it.add(field.name, true)
-                    } else {
-                        throwback("Unsupported data type.")
+                    if (isIgnoreField(field).not()) {
+                        if (isString(field.genericType)) {
+                            it.add(field.name, result.getString(field.name))
+                        } else if (isInt(field.genericType)) {
+                            it.add(field.name, result.getInt(field.name))
+                        } else if (isDouble(field.genericType)) {
+                            it.add(field.name, result.getDouble(field.name))
+                        } else if (isFloat(field.genericType)) {
+                            it.add(field.name, result.getFloat(field.name))
+                        } else if (isLong(field.genericType)) {
+                            it.add(field.name, result.getLong(field.name))
+                        } else if (isChar(field.genericType)) {
+                            it.add(field.name, result.getString(field.name))
+                        } else if (isBoolean(field.genericType)) {
+                            val temp = result.getInt(field.name)
+                            if (temp == 0)
+                                it.add(field.name, false)
+                            else it.add(field.name, true)
+                        } else {
+                            throwback("Unsupported data type.")
+                        }
                     }
                 }
                 resultList.add(jsonAsObject(clazz, it))
@@ -142,25 +144,27 @@ class PultusORMQuery(connection: Connection) {
             val it: JsonObject = JsonObject()
 
             for (field in clazz.javaClass.declaredFields) {
-                if (isString(field.genericType)) {
-                    it.add(field.name, result.getString(field.name))
-                } else if (isInt(field.genericType)) {
-                    it.add(field.name, result.getInt(field.name))
-                } else if (isDouble(field.genericType)) {
-                    it.add(field.name, result.getDouble(field.name))
-                } else if (isFloat(field.genericType)) {
-                    it.add(field.name, result.getFloat(field.name))
-                } else if (isLong(field.genericType)) {
-                    it.add(field.name, result.getLong(field.name))
-                } else if (isChar(field.genericType)) {
-                    it.add(field.name, result.getString(field.name))
-                } else if (isBoolean(field.genericType)) {
-                    val temp = result.getInt(field.name)
-                    if (temp == 0)
-                        it.add(field.name, false)
-                    else it.add(field.name, true)
-                } else {
-                    throwback("Unsupported data type.")
+                if (isIgnoreField(field).not()) {
+                    if (isString(field.genericType)) {
+                        it.add(field.name, result.getString(field.name))
+                    } else if (isInt(field.genericType)) {
+                        it.add(field.name, result.getInt(field.name))
+                    } else if (isDouble(field.genericType)) {
+                        it.add(field.name, result.getDouble(field.name))
+                    } else if (isFloat(field.genericType)) {
+                        it.add(field.name, result.getFloat(field.name))
+                    } else if (isLong(field.genericType)) {
+                        it.add(field.name, result.getLong(field.name))
+                    } else if (isChar(field.genericType)) {
+                        it.add(field.name, result.getString(field.name))
+                    } else if (isBoolean(field.genericType)) {
+                        val temp = result.getInt(field.name)
+                        if (temp == 0)
+                            it.add(field.name, false)
+                        else it.add(field.name, true)
+                    } else {
+                        throwback("Unsupported data type.")
+                    }
                 }
             }
             resultList.add(jsonAsObject(clazz, it))
@@ -324,7 +328,7 @@ class PultusORMQuery(connection: Connection) {
                 counter++
             }
         } catch (exception: Exception) {
-            throwback("Malformed query <${query.toString()}>.")
+            throwback("Malformed query <$query>.")
         }
         return counter
     }
@@ -366,14 +370,16 @@ class PultusORMQuery(connection: Connection) {
 
             var isFirst = true
             for (field in clazz.javaClass.declaredFields) {
-                if (isFirst.not())
-                    queryBuilder.append(", ")
+                if (isIgnoreField(field).not()) {
+                    if (isFirst.not())
+                        queryBuilder.append(", ")
 
-                val fieldPart: String = "${field.name} ${typeToSQL(field.genericType)} ${toPrimaryKey(field)} " +
-                        "${toAutoIncrement(field)} ${toNotNull(field)} ${toUnique(field)}"
-                queryBuilder.append(fieldPart.trim())
+                    val fieldPart: String = "${field.name} ${typeToSQL(field.genericType)} ${toPrimaryKey(field)} " +
+                            "${toAutoIncrement(field)} ${toNotNull(field)} ${toUnique(field)}"
+                    queryBuilder.append(fieldPart.trim())
 
-                isFirst = false
+                    isFirst = false
+                }
             }
             queryBuilder.append(");")
             return queryBuilder.toString()
@@ -389,23 +395,25 @@ class PultusORMQuery(connection: Connection) {
 
             var isFirst = true
             for (field in clazz.javaClass.declaredFields) {
-                if (isAutoIncrement(field))
-                    continue
+                if (isIgnoreField(field).not()) {
+                    if (isAutoIncrement(field))
+                        continue
 
-                if (isFirst.not()) {
-                    keyBuilder.append(",")
-                    valueBuilder.append(",")
+                    if (isFirst.not()) {
+                        keyBuilder.append(",")
+                        valueBuilder.append(",")
+                    }
+                    keyBuilder.append("${field.name}")
+                    if (objectAsJson.get(field.name).isString)
+                        valueBuilder.append("'${objectAsJson.getString(field.name, "")}'")
+                    else if (objectAsJson.get(field.name).isBoolean) {
+                        if (objectAsJson.getBoolean(field.name, false))
+                            valueBuilder.append("1")
+                        else valueBuilder.append("0")
+                    } else valueBuilder.append(objectAsJson.get(field.name))
+
+                    isFirst = false
                 }
-                keyBuilder.append("${field.name}")
-                if (objectAsJson.get(field.name).isString)
-                    valueBuilder.append("'${objectAsJson.getString(field.name, "")}'")
-                else if (objectAsJson.get(field.name).isBoolean) {
-                    if (objectAsJson.getBoolean(field.name, false))
-                        valueBuilder.append("1")
-                    else valueBuilder.append("0")
-                } else valueBuilder.append(objectAsJson.get(field.name))
-
-                isFirst = false
             }
 
             keyBuilder.append(")")
@@ -421,7 +429,7 @@ class PultusORMQuery(connection: Connection) {
 
         fun select(clazz: Any, condition: PultusORMCondition): String {
             if (condition.rawQuery().trim().isNotEmpty()) {
-                return "SELECT * FROM ${clazz.javaClass.simpleName} ${condition.rawQuery().toString()};"
+                return "SELECT * FROM ${clazz.javaClass.simpleName} ${condition.rawQuery()};"
             } else return select(clazz)
         }
 
