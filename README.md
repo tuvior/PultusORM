@@ -1,11 +1,12 @@
 # PultusORM [![](https://jitpack.io/v/ninja.sakib/PultusORM.svg)](https://jitpack.io/#ninja.sakib/PultusORM)
-PultusORM is a sqlite ORM library for kotlin , Android & Java.
+A sqlite ORM library for kotlin, Android & Java.
 
 Status : Active<br>
 Version : 1.1
 
-##
-Features Implemented,
+## Features
+Currently implemented:
+
 * Insert
 * Retrieve
 * Update
@@ -16,7 +17,7 @@ Features Implemented,
 ### Usages
 In your build file add
 ##### Gradle
-```
+```gradle
 allprojects {
     repositories {
         ...
@@ -25,14 +26,14 @@ allprojects {
 }
 ```
 And
-```
+```gradle
 dependencies {
     compile 'ninja.sakib:PultusORM:1.1'
 }
 ```
 
 ##### Maven
-```
+```xml
 <repositories>
     <repository>
         <id>jitpack.io</id>
@@ -41,7 +42,7 @@ dependencies {
 </repositories>
 ```
 And
-```
+```xml
 <dependency>
     <groupId>ninja.sakib</groupId>
     <artifactId>PultusORM</artifactId>
@@ -49,16 +50,16 @@ And
 </dependency>
 ```
 
-In case you need jar [download](https://jitpack.io/ninja/sakib/PultusORM/1.1/PultusORM-1.1.jar).
+In case you need jar download is available [here](https://jitpack.io/ninja/sakib/PultusORM/1.1/PultusORM-1.1.jar) .
 
-** If you want to use this library in a java project please add kotlin runtime library too.
+**If you want to use this library in a java project please add kotlin runtime library too.**
 
-[More option...](https://jitpack.io/#ninja.sakib/PultusORM/1.1)
+More option can be found [here](https://jitpack.io/#ninja.sakib/PultusORM/1.1).
 
 ### Examples
 
 ##### Insert Value
-```
+```kotlin
 class Student {
     @PrimaryKey
     @AutoIncrement
@@ -79,7 +80,7 @@ pultusORM.close()
 ```
 
 ##### Retrieve Value
-```
+```kotlin
 val students = pultusORM.find(Student())
 for (it in students) {
     val student = it as Student
@@ -91,14 +92,15 @@ for (it in students) {
 }
 ```
 
-###### Result
-1<br>
-Sakib Sayem<br>
-CSE<br>
-2.3
-
-##### Retrieve Value based on condition
+###### Results
 ```
+1
+Sakib Sayem
+CSE
+2.3
+```
+##### Retrieve Value based on condition
+```kotlin
 val condition: PultusORMCondition = PultusORMCondition.Builder()
             .eq("name", "sakib")
             .and()
@@ -118,7 +120,7 @@ for (it in students) {
 ```
 
 ##### Update Value
-```
+```kotlin
 // values will be updated based on this condition
 val condition: PultusORMCondition = PultusORMCondition.Builder()
             .eq("name", "Sakib")
@@ -133,32 +135,35 @@ pultusORM.update(Student(), updater)
 ```
 
 ##### Delete Value
-```
+```kotlin
 pultusORM.delete(Student())
 ```
 
-**[Check out more examples & API docs here](http://sakib.ninja/PultusORM/)**
+**Check out more examples & API docs [here](http://sakib.ninja/PultusORM/)**
 
-#
-#####Note :
+---
+
+#### Note
 Tables will be created on fly if not exists using class name
 and columns based on
 class fields.<br>
-Currently supported types.
+Currently supported types:
+
 * String
 * Int
 * Long
 * Float
 * Double
-* Boolean<br>
+* Boolean
 
 Autoincrement annotated fields values will be skipped
 as that will be handled by sqlite.
 
 ### License
-Copyright &copy; Sakib Sami<br>
+Copyright &copy;  Sakib Sami
+
 Distributed under [MIT](https://github.com/s4kibs4mi/PultusORM/blob/master/LICENSE) license
 
-### Naming
-You may want to know about **Pultus**.<br>
+### About the name
+You may want to know about **Pultus**.
 Well that's my GF's name I love to call ;)
