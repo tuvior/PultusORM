@@ -4,6 +4,8 @@ import ninja.sakib.pultusorm.callbacks.Callback
 import java.sql.Connection
 import java.sql.DriverManager
 
+import android.content.Context
+
 /**
  * := Coded with love by Sakib Sami on 9/27/16.
  * := s4kibs4mi@gmail.com
@@ -34,6 +36,19 @@ class PultusORM {
     }
 
     /**
+     * Constructor to initialize class with database name &
+     * database path on android
+     * @param context Application Context
+     * @param databaseName Name of the database to connect
+     */
+    constructor(context: Context, databaseName: String) {
+        this.databasePath = getUserHomeDirectory(context)
+        this.databaseName = databaseName
+
+        connect()
+    }
+
+    /**
      * Constructor to initialize class with database name & database path
      * @param databaseName Name of the database to connect
      * @param databasePath Path to database
@@ -55,7 +70,7 @@ class PultusORM {
         if (databasePath == null || databasePath!!.isEmpty())
             databasePath = getUserHomeDirectory()
 
-        var dbUrl = ""
+        val dbUrl: String
         if (isAndroidPlatform()) {
             Class.forName("org.sqldroid.SQLDroidDriver")
             dbUrl = "jdbc:sqldroid:$databasePath/$databaseName"

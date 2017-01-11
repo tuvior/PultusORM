@@ -9,6 +9,9 @@ import ninja.sakib.pultusorm.exceptions.PultusORMException
 import java.lang.reflect.Field
 import java.lang.reflect.Type
 
+import android.content.Context
+import java.io.File
+
 /**
  * := Coded with love by Sakib Sami on 9/27/16.
  * := s4kibs4mi@gmail.com
@@ -21,6 +24,7 @@ import java.lang.reflect.Type
  * Flag to logging on off
  */
 var isDebugEnabled = false
+
 /**
  * Class to Json converter
  */
@@ -50,6 +54,27 @@ fun log(key: String, value: String) {
  */
 fun getUserHomeDirectory(): String {
     return System.getProperty("user.home")
+}
+
+/**
+ * Method to get android application base private file directory
+ * @return String
+ */
+fun getUserHomeDirectory(context: Context): String {
+    val androidAppRootPath = "/data/data/" + context.packageName + "/dbs/"
+    createAndroidAppRootDirectory(androidAppRootPath)
+    return androidAppRootPath
+}
+
+/**
+ * Method to create android application base private file directory
+ * if not exists
+ */
+fun createAndroidAppRootDirectory(androidAppRootPath: String) {
+    val androidAppRootDir = File(androidAppRootPath)
+    if (androidAppRootDir.exists().not()) {
+        androidAppRootDir.mkdirs()
+    }
 }
 
 /**
