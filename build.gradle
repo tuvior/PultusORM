@@ -1,5 +1,5 @@
 group 'ninja.sakib'
-version '1.1'
+version '1.2'
 
 buildscript {
     ext.kotlin_version = '1.0.4'
@@ -43,7 +43,7 @@ dependencies {
 
     compile group: 'org.jetbrains.dokka', name: 'dokka-gradle-plugin', version: '0.9.9'
 
-    compile group: 'com.google.android', name: 'android', version: '4.1.1.4'
+//    compile group: 'com.google.android', name: 'android', version: '4.1.1.4'
 
     testCompile 'junit:junit:4.12'
 }
