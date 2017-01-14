@@ -98,6 +98,11 @@ class PultusORMTest : Callback {
         pultusORM.delete(Student())
     }
 
+    @Test
+    fun dropTable() {
+        pultusORM.drop(Student())
+    }
+
     override fun onSuccess(type: PultusORMQuery.Type) {
         println("${type.name} success")
     }

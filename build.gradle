@@ -2,36 +2,22 @@ group 'ninja.sakib'
 version '1.2'
 
 buildscript {
-    ext.kotlin_version = '1.0.4'
+    ext.kotlin_version = '1.0.6'
 
     repositories {
         mavenCentral()
-        maven {
-            url "https://dl.bintray.com/kotlin/dokka/"
-        }
     }
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "org.jetbrains.dokka:dokka-gradle-plugin:0.9.9"
     }
 }
 
 apply plugin: 'kotlin'
-apply plugin: 'org.jetbrains.dokka'
-
-dokka {
-    moduleName = 'pultusorm'
-    outputFormat = 'html'
-    outputDirectory = "$projectDir/docs"
-    sourceDirs = files('src/main/kotlin')
-}
 
 repositories {
     mavenCentral()
-    maven {
-        url "https://dl.bintray.com/kotlin/dokka/"
-    }
+
 }
 
 dependencies {
@@ -40,10 +26,6 @@ dependencies {
     compile group: 'com.eclipsesource.minimal-json', name: 'minimal-json', version: '0.9.4'
     compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.14.2.1'
     compile 'org.sqldroid:sqldroid:1.0.3'
-
-    compile group: 'org.jetbrains.dokka', name: 'dokka-gradle-plugin', version: '0.9.9'
-
-    compile group: 'com.google.android', name: 'android', version: '4.1.1.4'
 
     testCompile 'junit:junit:4.12'
 }

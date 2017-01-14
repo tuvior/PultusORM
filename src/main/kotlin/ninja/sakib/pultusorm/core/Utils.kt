@@ -9,9 +9,6 @@ import ninja.sakib.pultusorm.exceptions.PultusORMException
 import java.lang.reflect.Field
 import java.lang.reflect.Type
 
-import android.content.Context
-import java.io.File
-
 /**
  * := Coded with love by Sakib Sami on 9/27/16.
  * := s4kibs4mi@gmail.com
@@ -54,27 +51,6 @@ fun log(key: String, value: String) {
  */
 fun getUserHomeDirectory(): String {
     return System.getProperty("user.home")
-}
-
-/**
- * Method to get android application base private file directory
- * @return String
- */
-fun getUserHomeDirectory(context: Context): String {
-    val androidAppRootPath = "/data/data/" + context.packageName + "/dbs/"
-    createAndroidAppRootDirectory(androidAppRootPath)
-    return androidAppRootPath
-}
-
-/**
- * Method to create android application base private file directory
- * if not exists
- */
-fun createAndroidAppRootDirectory(androidAppRootPath: String) {
-    val androidAppRootDir = File(androidAppRootPath)
-    if (androidAppRootDir.exists().not()) {
-        androidAppRootDir.mkdirs()
-    }
 }
 
 /**
@@ -184,7 +160,8 @@ fun toPrimaryKey(value: Field): String {
 }
 
 fun isIgnoreField(value: Field): Boolean {
-    return value.getAnnotation(Ignore::class.java) != null
+    return value.name.startsWith("$").not() && isEqual(value.name, "serialVersionUID").not() &&
+            value.getAnnotation(Ignore::class.java) != null
 }
 
 /**
