@@ -440,7 +440,7 @@ class PultusORMQuery(connection: Connection) {
         fun update(clazz: Any, updateQuery: PultusORMUpdater): String {
             val query: StringBuilder = StringBuilder()
             query.append("UPDATE ${clazz.javaClass.simpleName} SET ")
-            query.append("${updateQuery.updateQuery()}")
+            query.append(updateQuery.updateQuery())
             if (updateQuery.condition() != null)
                 query.append(" ${updateQuery.condition()!!.rawQuery()}")
             query.append(";")

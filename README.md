@@ -2,7 +2,7 @@
 A sqlite ORM library for kotlin, Android & Java.
 
 Status : Active<br>
-Version : 1.1
+Version : v1.3
 
 ## Features
 Currently implemented:
@@ -28,7 +28,7 @@ allprojects {
 And
 ```gradle
 dependencies {
-    compile 'ninja.sakib:PultusORM:1.1'
+    compile 'ninja.sakib:PultusORM:v1.3'
 }
 ```
 
@@ -46,15 +46,15 @@ And
 <dependency>
     <groupId>ninja.sakib</groupId>
     <artifactId>PultusORM</artifactId>
-    <version>1.1</version>
+    <version>v1.3</version>
 </dependency>
 ```
 
-In case you need jar download is available [here](https://jitpack.io/ninja/sakib/PultusORM/1.1/PultusORM-1.1.jar) .
+In case you need jar download is available [here](https://jitpack.io/ninja/sakib/PultusORM/v1.3/PultusORM-v1.3.jar) .
 
 **If you want to use this library in a java project please add kotlin runtime library too.**
 
-More option can be found [here](https://jitpack.io/#ninja.sakib/PultusORM/1.1).
+More option can be found [here](https://jitpack.io/#ninja.sakib/PultusORM/v1.3).
 
 ### Examples
 
@@ -67,6 +67,8 @@ class Student {
     var name: String? = null
     var department: String? = null
     var cgpa: Double = 0.0
+    @Ignore
+    var section: String? = null
 }
 
 val pultusORM: PultusORM = PultusORM("test.db", "/Users/s4kib/")
@@ -139,7 +141,12 @@ pultusORM.update(Student(), updater)
 pultusORM.delete(Student())
 ```
 
-**Check out more examples & API docs [here](http://sakib.ninja/PultusORM/)**
+##### Drop Table
+```kotlin
+pultusORM.drop(Student())
+```
+
+**Check out more examples & API docs [here](http://pultusorm.sakib.ninja)**
 
 ---
 
