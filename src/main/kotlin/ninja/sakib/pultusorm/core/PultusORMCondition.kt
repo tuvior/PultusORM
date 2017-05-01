@@ -67,40 +67,43 @@ class PultusORMCondition private constructor(builder: Builder) {
 
         /**
          * Method to add between condition
+         * @param key name of queried value
          * @param begin start value
          * @param end end value
          * @return Builder with contacted current condition
          */
-        fun between(begin: Int, end: Int): Builder {
+        fun between(key: String, begin: Int, end: Int): Builder {
             addSeparator()
 
-            conditionQuery.append("BETWEEN $begin AND $end")
+            conditionQuery.append("$key BETWEEN $begin AND $end")
             return this
         }
 
         /**
          * Method to add in condition
+         * @param key name of queried value
          * @param begin start value
          * @param end end value
          * @return Builder with contacted current condition
          */
-        fun In(begin: Int, end: Int): Builder {
+        fun In(key: String, begin: Int, end: Int): Builder {
             addSeparator()
 
-            conditionQuery.append("IN($begin,$end)")
+            conditionQuery.append("$key IN($begin,$end)")
             return this
         }
 
         /**
          * Method to add between condition
+         * @param key name of queried value
          * @param begin start value
          * @param end end value
          * @return Builder with contacted current condition
          */
-        fun notIn(begin: Int, end: Int): Builder {
+        fun notIn(key: String, begin: Int, end: Int): Builder {
             addSeparator()
 
-            conditionQuery.append("NOT IN($begin,$end)")
+            conditionQuery.append("$key NOT IN($begin,$end)")
             return this
         }
 
@@ -286,19 +289,19 @@ class PultusORMCondition private constructor(builder: Builder) {
         fun rawQuery(): String {
             val query: StringBuilder = StringBuilder()
             if (conditionQuery.isNotEmpty())
-                query.append("WHERE ${conditionQuery.toString()}")
+                query.append("WHERE $conditionQuery")
 
             if (query.isNotEmpty())
                 query.append(" ")
 
             if (groupQuery.isNotEmpty())
-                query.append("GROUP BY ${groupQuery.toString()}")
+                query.append("GROUP BY $groupQuery")
 
             if (query.isNotEmpty())
                 query.append(" ")
 
             if (sortQuery.isNotEmpty())
-                query.append("ORDER BY ${sortQuery.toString()}")
+                query.append("ORDER BY $sortQuery")
 
             return query.toString()
         }
