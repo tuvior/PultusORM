@@ -83,7 +83,7 @@ class PultusORMTest : Callback {
     @Test
     fun updateValue() {
         val condition: PultusORMCondition = PultusORMCondition.Builder()
-                .eq("name", "Sakib")
+                .contains("name", "Sakib")
                 .build()
 
         val updater: PultusORMUpdater = PultusORMUpdater.Builder()
