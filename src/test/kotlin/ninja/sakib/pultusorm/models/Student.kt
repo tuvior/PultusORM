@@ -11,7 +11,7 @@ import ninja.sakib.pultusorm.annotations.PrimaryKey
  * := Coffee : Dream : Code
  */
 
-class Student {
+class Student : Contact() {
     @PrimaryKey
     @AutoIncrement
     var studentId: Int = 0

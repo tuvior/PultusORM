@@ -30,6 +30,8 @@ class PultusORMTest : Callback {
         student.name = "Sakib Sayem"
         student.department = "CSE"
         student.cgpa = 2.3
+        student.email = "s4kibs4mi@gmail.com"
+        student.website = "https://www.sakib.ninja"
 
         val result = pultusORM.save(student)
         Assert.assertTrue(result)
@@ -54,6 +56,8 @@ class PultusORMTest : Callback {
             println(student.name)
             println(student.department)
             println(student.cgpa)
+            println(student.email)
+            println(student.website)
             println()
         }
     }
