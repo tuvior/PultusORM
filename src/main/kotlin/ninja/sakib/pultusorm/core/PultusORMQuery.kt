@@ -50,15 +50,17 @@ class PultusORMQuery(connection: Connection) {
      * Method to save value
      * @param clazz
      */
-    fun save(clazz: Any) {
+    fun save(clazz: Any): Boolean {
         try {
             createTable(clazz)
 
             statement.execute(Builder().insert(clazz))
             log(this.javaClass.simpleName, "Inserted into ${clazz.javaClass.simpleName} - Succeed")
+            return true
         } catch (exception: Exception) {
             log(this.javaClass.simpleName, "Inserted into ${clazz.javaClass.simpleName} - Failed <${exception.message}>")
         }
+        return false
     }
 
     /**
@@ -124,7 +126,7 @@ class PultusORMQuery(connection: Connection) {
                 resultList.add(jsonAsObject(clazz, it))
             }
         } catch (exception: Exception) {
-            throwback("Malformed query <${query.toString()}>. Caused by ${exception.message}")
+            throwback("Malformed query <$query>. Caused by ${exception.message}")
         }
         return resultList
     }
@@ -177,14 +179,16 @@ class PultusORMQuery(connection: Connection) {
      * @param clazz
      * @param updateQuery update parameters
      */
-    fun update(clazz: Any, updateQuery: PultusORMUpdater) {
+    fun update(clazz: Any, updateQuery: PultusORMUpdater): Boolean {
         createTable(clazz)
 
         try {
             statement.execute(Builder().update(clazz, updateQuery))
+            return true
         } catch (exception: Exception) {
             throwback("Malformed update query.")
         }
+        return false
     }
 
     /**
@@ -211,15 +215,17 @@ class PultusORMQuery(connection: Connection) {
      * Method to delete value
      * @param clazz
      */
-    fun delete(clazz: Any) {
+    fun delete(clazz: Any): Boolean {
         createTable(clazz)
 
         try {
             statement.execute(Builder().delete(clazz))
-            log(this.javaClass.simpleName, "Table ${parseClassName(clazz)} dropped - Succeed")
+            log(this.javaClass.simpleName, "Table ${parseClassName(clazz)} data deleted - Succeed")
+            return true
         } catch (exception: Exception) {
-            log(this.javaClass.simpleName, "Table ${parseClassName(clazz)} dropped - Failed <${exception.message}>")
+            log(this.javaClass.simpleName, "Table ${parseClassName(clazz)} data deleted - Failed <${exception.message}>")
         }
+        return false
     }
 
     /**
@@ -227,15 +233,17 @@ class PultusORMQuery(connection: Connection) {
      * @param clazz
      * @param condition condition to update value
      */
-    fun delete(clazz: Any, condition: PultusORMCondition) {
+    fun delete(clazz: Any, condition: PultusORMCondition): Boolean {
         createTable(clazz)
 
         try {
             statement.execute(Builder().delete(clazz, condition))
             log(this.javaClass.simpleName, "Table ${clazz.javaClass.simpleName} delete - Succeed")
+            return true
         } catch (exception: Exception) {
             log(this.javaClass.simpleName, "Table ${clazz.javaClass.simpleName} delete - Failed <${exception.message}>")
         }
+        return false
     }
 
     /**
@@ -281,13 +289,15 @@ class PultusORMQuery(connection: Connection) {
      * Method to delete table
      * @param clazz
      */
-    fun drop(clazz: Any) {
+    fun drop(clazz: Any): Boolean {
         try {
             if (isTableExists(clazz.javaClass.simpleName))
                 statement.execute(Builder().drop(clazz))
+            return true
         } catch (exception: Exception) {
             throwback("Malformed drop query.")
         }
+        return false
     }
 
     /**

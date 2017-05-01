@@ -31,7 +31,8 @@ class PultusORMTest : Callback {
         student.department = "CSE"
         student.cgpa = 2.3
 
-        pultusORM.save(student)
+        val result = pultusORM.save(student)
+        Assert.assertTrue(result)
     }
 
     @Test
@@ -95,7 +96,8 @@ class PultusORMTest : Callback {
 
     @Test
     fun deleteValue() {
-        pultusORM.delete(Student())
+        val result = pultusORM.delete(Student())
+        Assert.assertTrue(result)
     }
 
     @Test

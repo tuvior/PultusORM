@@ -71,8 +71,8 @@ class PultusORM {
      * Method to save data
      * @param clazz Class object which data want to add
      */
-    fun save(clazz: Any) {
-        PultusORMQuery(connection!!).save(clazz)
+    fun save(clazz: Any): Boolean {
+        return PultusORMQuery(connection!!).save(clazz)
     }
 
     /**
@@ -89,8 +89,8 @@ class PultusORM {
      * @param clazz value of which class going to update
      * @param updater holds update condition and values
      */
-    fun update(clazz: Any, updater: PultusORMUpdater) {
-        PultusORMQuery(connection!!).update(clazz, updater)
+    fun update(clazz: Any, updater: PultusORMUpdater): Boolean {
+        return PultusORMQuery(connection!!).update(clazz, updater)
     }
 
     /**
@@ -105,34 +105,11 @@ class PultusORM {
 
     /**
      * Method to get data of specific clazz
-     * It's deprecated use find method instead
-     * @param clazz which class of data will provide
-     * @return MutableList of type Any
-     */
-    @Deprecated("use find instead of get")
-    fun get(clazz: Any): MutableList<Any> {
-        return PultusORMQuery(connection!!).get(clazz)
-    }
-
-    /**
-     * Method to get data of specific clazz
      * @param clazz which class of data will provide
      * @return MutableList of type Any
      */
     fun find(clazz: Any): MutableList<Any> {
         return PultusORMQuery(connection!!).get(clazz)
-    }
-
-    /**
-     * Method to get data of specific clazz based of provided condition
-     * It's deprecated use find method instead
-     * @param clazz which class of data will provide
-     * @param condition condition will be used to get data
-     * @return MutableList of type Any
-     */
-    @Deprecated("use find instead of get")
-    fun get(clazz: Any, condition: PultusORMCondition): MutableList<Any> {
-        return PultusORMQuery(connection!!).get(clazz, condition)
     }
 
     /**
@@ -149,8 +126,8 @@ class PultusORM {
      * Method to delete data of specific clazz
      * @param clazz which type of data will be deleted
      */
-    fun delete(clazz: Any) {
-        PultusORMQuery(connection!!).delete(clazz)
+    fun delete(clazz: Any): Boolean {
+        return PultusORMQuery(connection!!).delete(clazz)
     }
 
     /**
@@ -158,8 +135,8 @@ class PultusORM {
      * @param clazz which type of data will be deleted
      * @param condition will be used to delete data
      */
-    fun delete(clazz: Any, condition: PultusORMCondition) {
-        PultusORMQuery(connection!!).delete(clazz, condition)
+    fun delete(clazz: Any, condition: PultusORMCondition): Boolean {
+        return PultusORMQuery(connection!!).delete(clazz, condition)
     }
 
     /**
@@ -185,8 +162,8 @@ class PultusORM {
      * Method to drop table
      * @param clazz which type of table will be deleted
      */
-    fun drop(clazz: Any) {
-        PultusORMQuery(connection!!).drop(clazz)
+    fun drop(clazz: Any): Boolean {
+        return PultusORMQuery(connection!!).drop(clazz)
     }
 
     /**
