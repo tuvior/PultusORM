@@ -170,7 +170,3 @@ as that will be handled by sqlite.
 Copyright &copy;  Sakib Sami
 
 Distributed under [MIT](https://github.com/s4kibs4mi/PultusORM/blob/master/LICENSE) license
-
-### About the name
-You may want to know about **Pultus**.
-Well that's my GF's name I love to call ;)
