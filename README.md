@@ -71,7 +71,13 @@ class Student {
     var section: String? = null
 }
 
+In Java,
 val pultusORM: PultusORM = PultusORM("test.db", "/Users/s4kib/")
+val pultusORM: PultusORM = PultusORM("test.db")    // DB will take place in user.home directory
+
+In Android,
+val appPath = getApplicationContext().getFilesDir().getAbsolutePath()  // Output : /data/data/application_package_name/files/
+val pultusORM: PultusORM = PultusORM("test.db", appPath)
 
 val student: Student = Student()
 student.name = "Sakib Sayem"
