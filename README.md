@@ -60,7 +60,7 @@ More option can be found [here](https://jitpack.io/#ninja.sakib/PultusORM/v1.4).
 
 ##### Open database connection
 ```kotlin
-In Java,
+In Java/Kotlin,
 val pultusORM: PultusORM = PultusORM("test.db", "/Users/s4kib/")
 val pultusORM: PultusORM = PultusORM("test.db")    // DB will take place in user.home directory
 
