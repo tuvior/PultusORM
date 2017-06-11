@@ -58,7 +58,18 @@ More option can be found [here](https://jitpack.io/#ninja.sakib/PultusORM/v1.4).
 
 ### Examples
 
-##### Insert Value
+##### Open database connection
+```kotlin
+In Java,
+val pultusORM: PultusORM = PultusORM("test.db", "/Users/s4kib/")
+val pultusORM: PultusORM = PultusORM("test.db")    // DB will take place in user.home directory
+
+In Android,
+val appPath = getApplicationContext().getFilesDir().getAbsolutePath()  // Output : /data/data/application_package_name/files/
+val pultusORM: PultusORM = PultusORM("test.db", appPath)
+```
+
+##### Insert value
 ```kotlin
 class Student {
     @PrimaryKey
@@ -71,14 +82,6 @@ class Student {
     var section: String? = null
 }
 
-In Java,
-val pultusORM: PultusORM = PultusORM("test.db", "/Users/s4kib/")
-val pultusORM: PultusORM = PultusORM("test.db")    // DB will take place in user.home directory
-
-In Android,
-val appPath = getApplicationContext().getFilesDir().getAbsolutePath()  // Output : /data/data/application_package_name/files/
-val pultusORM: PultusORM = PultusORM("test.db", appPath)
-
 val student: Student = Student()
 student.name = "Sakib Sayem"
 student.department = "CSE"
@@ -87,7 +90,7 @@ pultusORM.save(student)
 pultusORM.close()
 ```
 
-##### Retrieve Value
+##### Retrieve Values
 ```kotlin
 val students = pultusORM.find(Student())
 for (it in students) {
@@ -100,14 +103,15 @@ for (it in students) {
 }
 ```
 
-###### Results
+###### Result
 ```
 1
 Sakib Sayem
 CSE
 2.3
 ```
-##### Retrieve Value based on condition
+
+##### Retrieve values based on condition
 ```kotlin
 val condition: PultusORMCondition = PultusORMCondition.Builder()
             .eq("name", "sakib")
@@ -127,7 +131,7 @@ for (it in students) {
 }
 ```
 
-##### Update Value
+##### Update value
 ```kotlin
 // values will be updated based on this condition
 val condition: PultusORMCondition = PultusORMCondition.Builder()
@@ -142,7 +146,7 @@ val updater: PultusORMUpdater = PultusORMUpdater.Builder()
 pultusORM.update(Student(), updater)
 ```
 
-##### Delete Value
+##### Delete values
 ```kotlin
 pultusORM.delete(Student())
 ```
