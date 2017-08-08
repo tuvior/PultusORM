@@ -1,5 +1,5 @@
-group 'ninja.sakib'
-version '1.2'
+group 'ninja.sakib.pultusorm'
+version '1.4'
 
 buildscript {
     ext.kotlin_version = '1.0.6'

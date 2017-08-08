@@ -28,7 +28,7 @@ class PultusORMTest : Callback {
     fun saveTest() {
         val student: Student = Student()
         student.name = "Sakib Sayem"
-        student.department = "CSE"
+//        student.department = "CSE"
         student.cgpa = 2.3
         student.email = "s4kibs4mi@gmail.com"
         student.website = "https://www.sakib.ninja"
