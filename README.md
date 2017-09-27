@@ -1,8 +1,8 @@
 # PultusORM [![](https://jitpack.io/v/ninja.sakib/PultusORM.svg)](https://jitpack.io/#ninja.sakib/PultusORM)
-A sqlite ORM library for kotlin, Android & Java.
+A Sqlite ORM library for kotlin, Android & Java.
 
 Status : Active<br>
-Version : v1.5
+Version : v1.6
 
 ## Features
 Currently implemented:
@@ -28,7 +28,7 @@ allprojects {
 And
 ```gradle
 dependencies {
-    compile 'ninja.sakib:PultusORM:v1.5'
+    compile 'ninja.sakib:PultusORM:v1.6'
 }
 ```
 
@@ -46,15 +46,13 @@ And
 <dependency>
     <groupId>ninja.sakib</groupId>
     <artifactId>PultusORM</artifactId>
-    <version>v1.5</version>
+    <version>v1.6</version>
 </dependency>
 ```
 
-In case you need jar download is available [here](https://jitpack.io/ninja/sakib/PultusORM/v1.4/PultusORM-v1.5.jar) .
+In case you need jar download is available [here](https://jitpack.io/ninja/sakib/PultusORM/v1.6/PultusORM-v1.6.jar) .
 
-**If you want to use this library in a java project please add kotlin runtime library too.**
-
-More option can be found [here](https://jitpack.io/#ninja.sakib/PultusORM/v1.5).
+More option can be found [here](https://jitpack.io/#ninja.sakib/PultusORM/v1.6).
 
 ### Examples
 
@@ -176,7 +174,7 @@ Currently supported types:
 * Float
 * Double
 * Boolean
-* Date (java.utils)
+* Date (java.util)
 
 Autoincrement annotated fields values will be skipped
 as that will be handled by sqlite.
