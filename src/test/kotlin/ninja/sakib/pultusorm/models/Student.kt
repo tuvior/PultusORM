@@ -3,6 +3,7 @@ package ninja.sakib.pultusorm.models
 import ninja.sakib.pultusorm.annotations.AutoIncrement
 import ninja.sakib.pultusorm.annotations.Ignore
 import ninja.sakib.pultusorm.annotations.PrimaryKey
+import java.util.*
 
 /**
  * := Coded with love by Sakib Sami on 10/6/16.
@@ -18,6 +19,7 @@ class Student : Contact() {
     var name: String? = null
     var department: String? = null
     var cgpa: Double = 0.0
+    var dateOfBirth: Date? = null
     @Ignore
     var selction: String? = null
 }

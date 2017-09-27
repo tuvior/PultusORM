@@ -6,9 +6,12 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import ninja.sakib.pultusorm.annotations.*
 import ninja.sakib.pultusorm.exceptions.PultusORMException
+import org.joda.time.DateTime
+import org.joda.time.format.DateTimeFormat
 import java.lang.reflect.Field
 import java.lang.reflect.Type
 import java.sql.ResultSet
+import java.util.*
 
 /**
  * := Coded with love by Sakib Sami on 9/27/16.
@@ -22,11 +25,31 @@ import java.sql.ResultSet
  * Flag to logging on off
  */
 var isDebugEnabled = false
+var dateTimeFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+var datetimeFormatter = DateTimeFormat.forPattern(dateTimeFormat)
+
+fun dateToText(date: Date): String {
+    return datetimeFormatter.print(DateTime(date))
+}
+
+fun textToDate(date: String): Date {
+    return datetimeFormatter.parseDateTime(date).toDate()
+}
+
+fun getDateTimeTextFormat(): String {
+    return dateTimeFormat
+}
+
+fun setDateTimeTextFormat(dateFormat: String) {
+    dateTimeFormat = dateFormat
+}
 
 /**
  * Class to Json converter
  */
-val objectToJsonConverter: Gson = GsonBuilder().create()
+val objectToJsonConverter: Gson = GsonBuilder()
+        .setDateFormat(getDateTimeTextFormat())
+        .create()
 
 /**
  * Method to enable/disable debug & logging mode
@@ -67,14 +90,16 @@ fun throwback(msg: String) {
  * @param value primitive type
  */
 fun typeToSQL(value: Type): String {
-    if (value == Int::class.java || value == Boolean::class.java)
-        return "INTEGER"
+    return if (value == Int::class.java || value == Boolean::class.java)
+        "INTEGER"
     else if (value == Long::class.java)
-        return "BIGINT"
+        "BIGINT"
     else if (value == Double::class.java || value == Float::class.java)
-        return "DOUBLE"
-    else
-        return "TEXT"
+        "DOUBLE"
+    else if (value == Date::class.java) {
+        "DATE"
+    } else
+        "TEXT"
 }
 
 /**
@@ -138,6 +163,15 @@ fun isFloat(value: Type): Boolean {
  */
 fun isChar(value: Type): Boolean {
     return value == Char::class.java
+}
+
+/**
+ * Method to check whether type is datetime
+ * @param value type
+ * @return Boolean
+ */
+fun isDate(value: Type): Boolean {
+    return value == Date::class.java
 }
 
 /**
@@ -272,7 +306,7 @@ fun resultSetToList(result: ResultSet, clazz: Any): MutableList<Any> {
     val resultList: MutableList<Any> = mutableListOf()
 
     while (result.next()) {
-        val it: JsonObject = JsonObject()
+        val it = JsonObject()
 
         val fields = clazz.javaClass.declaredFields + clazz.javaClass.superclass.declaredFields
 
@@ -295,6 +329,11 @@ fun resultSetToList(result: ResultSet, clazz: Any): MutableList<Any> {
                     if (temp == 0)
                         it.add(field.name, false)
                     else it.add(field.name, true)
+                } else if (isDate(field.genericType)) {
+                    val date = result.getDate(field.name)
+                    if (date != null) {
+                        it.add(field.name, dateToText(result.getDate(field.name)))
+                    }
                 } else {
                     throwback("Unsupported data type.")
                 }

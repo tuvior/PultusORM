@@ -113,6 +113,7 @@ class PultusORMQuery(connection: Connection) {
             val result: ResultSet = statement.executeQuery(query)
             return resultSetToList(result, clazz)
         } catch (exception: Exception) {
+            exception.printStackTrace()
             throwback("Malformed query <$query>. Caused by ${exception.message}")
         }
         return mutableListOf()
@@ -346,8 +347,8 @@ class PultusORMQuery(connection: Connection) {
             val queryBuilder = StringBuilder()
             queryBuilder.append("INSERT INTO ${clazz.javaClass.simpleName}")
 
-            val keyBuilder: StringBuilder = StringBuilder("(")
-            val valueBuilder: StringBuilder = StringBuilder(" VALUES(")
+            val keyBuilder = StringBuilder("(")
+            val valueBuilder = StringBuilder(" VALUES(")
 
             val fields = clazz.javaClass.declaredFields + clazz.javaClass.superclass.declaredFields
 

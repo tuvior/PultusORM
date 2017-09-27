@@ -78,6 +78,7 @@ class Student {
     var name: String? = null
     var department: String? = null
     var cgpa: Double = 0.0
+    var dateOfBirth: java.util.Date? = null
     @Ignore
     var section: String? = null
 }
@@ -86,6 +87,7 @@ val student: Student = Student()
 student.name = "Sakib Sayem"
 student.department = "CSE"
 student.cgpa = 2.3
+student.dateOfBirth = Date()
 pultusORM.save(student)
 pultusORM.close()
 ```
@@ -99,6 +101,7 @@ for (it in students) {
     println(student.name)
     println(student.department)
     println(student.cgpa)
+    println(student.dateOfBirth)
     println()
 }
 ```
@@ -109,6 +112,7 @@ for (it in students) {
 Sakib Sayem
 CSE
 2.3
+Wed Sep 27 23:21:52 BDT 2017
 ```
 
 ##### Retrieve values based on condition
@@ -172,6 +176,7 @@ Currently supported types:
 * Float
 * Double
 * Boolean
+* Date (java.utils)
 
 Autoincrement annotated fields values will be skipped
 as that will be handled by sqlite.

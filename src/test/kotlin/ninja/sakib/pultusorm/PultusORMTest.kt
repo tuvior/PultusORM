@@ -4,6 +4,7 @@ import ninja.sakib.pultusorm.callbacks.Callback
 import ninja.sakib.pultusorm.core.*
 import ninja.sakib.pultusorm.exceptions.PultusORMException
 import ninja.sakib.pultusorm.models.Student
+import org.joda.time.DateTime
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -38,6 +39,19 @@ class PultusORMTest : Callback {
     }
 
     @Test
+    fun saveWithDateTest() {
+        val student = Student()
+        student.name = "Sakib Sayem"
+        student.cgpa = 2.3
+        student.email = "s4kibs4mi@gmail.com"
+        student.website = "https://www.sakib.ninja"
+        student.dateOfBirth = DateTime.now().toDate()
+
+        val result = pultusORM.save(student)
+        Assert.assertTrue(result)
+    }
+
+    @Test
     fun saveTestWithCallback() {
         val student: Student = Student()
         student.name = "Ayasha"
@@ -58,6 +72,7 @@ class PultusORMTest : Callback {
             println(student.cgpa)
             println(student.email)
             println(student.website)
+            println(student.dateOfBirth)
             println()
         }
     }
