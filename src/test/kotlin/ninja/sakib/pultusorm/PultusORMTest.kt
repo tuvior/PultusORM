@@ -82,7 +82,7 @@ class PultusORMTest : Callback {
         val condition: PultusORMCondition = PultusORMCondition.Builder()
                 .eq("name", "sakib")
                 .and()
-                .greaterEq("cgpa", 18)
+                .greaterEq("cgpa", 15.34)
                 .or()
                 .startsWith("name", "sami")
                 .sort("name", PultusORMQuery.Sort.DESCENDING)

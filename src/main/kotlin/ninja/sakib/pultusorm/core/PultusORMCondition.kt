@@ -44,9 +44,11 @@ class PultusORMCondition private constructor(builder: Builder) {
         fun eq(key: String, value: Any): Builder {
             addSeparator()
 
-            if (value is String)
+            if (isNumeric(value)) {
+                conditionQuery.append("$key = $value")
+            } else {
                 conditionQuery.append("$key = '$value'")
-            else conditionQuery.append("$key = $value")
+            }
             return this
         }
 
@@ -59,9 +61,11 @@ class PultusORMCondition private constructor(builder: Builder) {
         fun notEq(key: String, value: Any): Builder {
             addSeparator()
 
-            if (value is String)
+            if (isNumeric(value)) {
+                conditionQuery.append("$key != $value")
+            } else {
                 conditionQuery.append("$key != '$value'")
-            else conditionQuery.append("$key != $value")
+            }
             return this
         }
 
@@ -72,10 +76,11 @@ class PultusORMCondition private constructor(builder: Builder) {
          * @param end end value
          * @return Builder with contacted current condition
          */
-        fun between(key: String, begin: Int, end: Int): Builder {
-            addSeparator()
-
-            conditionQuery.append("$key BETWEEN $begin AND $end")
+        fun between(key: String, begin: Any, end: Any): Builder {
+            if (isNumeric(begin) && isNumeric(end)) {
+                addSeparator()
+                conditionQuery.append("$key BETWEEN $begin AND $end")
+            }
             return this
         }
 
@@ -86,10 +91,11 @@ class PultusORMCondition private constructor(builder: Builder) {
          * @param end end value
          * @return Builder with contacted current condition
          */
-        fun In(key: String, begin: Int, end: Int): Builder {
-            addSeparator()
-
-            conditionQuery.append("$key IN($begin,$end)")
+        fun In(key: String, begin: Any, end: Any): Builder {
+            if (isNumeric(begin) && isNumeric(end)) {
+                addSeparator()
+                conditionQuery.append("$key IN($begin,$end)")
+            }
             return this
         }
 
@@ -100,10 +106,11 @@ class PultusORMCondition private constructor(builder: Builder) {
          * @param end end value
          * @return Builder with contacted current condition
          */
-        fun notIn(key: String, begin: Int, end: Int): Builder {
-            addSeparator()
-
-            conditionQuery.append("$key NOT IN($begin,$end)")
+        fun notIn(key: String, begin: Any, end: Any): Builder {
+            if (isNumeric(begin) && isNumeric(end)) {
+                addSeparator()
+                conditionQuery.append("$key NOT IN($begin,$end)")
+            }
             return this
         }
 
@@ -137,7 +144,7 @@ class PultusORMCondition private constructor(builder: Builder) {
         fun or(condition: Builder): Builder {
             addSeparator()
 
-            conditionQuery.append("OR (${condition.conditionQuery.toString()})")
+            conditionQuery.append("OR (${condition.conditionQuery})")
             return this
         }
 
@@ -149,7 +156,7 @@ class PultusORMCondition private constructor(builder: Builder) {
         fun and(condition: Builder): Builder {
             addSeparator()
 
-            conditionQuery.append("AND (${condition.conditionQuery.toString()})")
+            conditionQuery.append("AND (${condition.conditionQuery})")
             return this
         }
 
@@ -159,10 +166,13 @@ class PultusORMCondition private constructor(builder: Builder) {
          * @param value field value
          * @return Builder with contacted current condition
          */
-        fun greater(key: String, value: Int): Builder {
+        fun greater(key: String, value: Any): Builder {
             addSeparator()
-
-            conditionQuery.append("$key > $value")
+            if (isNumeric(value)) {
+                conditionQuery.append("$key > $value")
+            } else {
+                conditionQuery.append("$key > '$value'")
+            }
             return this
         }
 
@@ -172,10 +182,13 @@ class PultusORMCondition private constructor(builder: Builder) {
          * @param value field value
          * @return Builder with contacted current condition
          */
-        fun less(key: String, value: Int): Builder {
+        fun less(key: String, value: Any): Builder {
             addSeparator()
-
-            conditionQuery.append("$key < $value")
+            if (isNumeric(value)) {
+                conditionQuery.append("$key < $value")
+            } else {
+                conditionQuery.append("$key < '$value'")
+            }
             return this
         }
 
@@ -185,10 +198,13 @@ class PultusORMCondition private constructor(builder: Builder) {
          * @param value field value
          * @return Builder with contacted current condition
          */
-        fun greaterEq(key: String, value: Int): Builder {
+        fun greaterEq(key: String, value: Any): Builder {
             addSeparator()
-
-            conditionQuery.append("$key >= $value")
+            if (isNumeric(value)) {
+                conditionQuery.append("$key >= $value")
+            } else {
+                conditionQuery.append("$key >= '$value'")
+            }
             return this
         }
 
@@ -198,10 +214,13 @@ class PultusORMCondition private constructor(builder: Builder) {
          * @param value field value
          * @return Builder with contacted current condition
          */
-        fun lessEq(key: String, value: Int): Builder {
+        fun lessEq(key: String, value: Any): Builder {
             addSeparator()
-
-            conditionQuery.append("$key <= $value")
+            if (isNumeric(value)) {
+                conditionQuery.append("$key <= $value")
+            } else {
+                conditionQuery.append("$key <= '$value'")
+            }
             return this
         }
 
