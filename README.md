@@ -1,5 +1,5 @@
 # PultusORM [![](https://jitpack.io/v/ninja.sakib/PultusORM.svg)](https://jitpack.io/#ninja.sakib/PultusORM)
-A Sqlite ORM library for kotlin, Android & Java.
+A Sqlite ORM library for Kotlin, Java & Android.
 
 Status : Active<br>
 Version : v1.7
@@ -58,13 +58,22 @@ More option can be found [here](https://jitpack.io/#ninja.sakib/PultusORM/v1.7).
 
 ##### Open database connection
 ```kotlin
-In Java/Kotlin,
+In Kotlin,
 val pultusORM: PultusORM = PultusORM("test.db", "/Users/s4kib/")
 val pultusORM: PultusORM = PultusORM("test.db")    // DB will take place in user.home directory
 
-In Android,
-val appPath = getApplicationContext().getFilesDir().getAbsolutePath()  // Output : /data/data/application_package_name/files/
+In Android (Kotlin),
+val appPath: String = getApplicationContext().getFilesDir().getAbsolutePath()  // Output : /data/data/application_package_name/files/
 val pultusORM: PultusORM = PultusORM("test.db", appPath)
+```
+```java
+In Java,
+PultusORM orm = new PultusORM("test.db", "/Users/s4kib/")
+PultusORM orm = new PultusORM("test.db", )  // DB will take place in user.home directory
+
+In Android (Java),
+String appPath = getApplicationContext().getFilesDir().getAbsolutePath()  // Output : /data/data/application_package_name/files/
+val orm = new PultusORM("test.db", appPath)
 ```
 
 ##### Insert value
