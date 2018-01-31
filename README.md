@@ -195,3 +195,6 @@ Distributed under [MIT](https://github.com/s4kibs4mi/PultusORM/blob/master/LICEN
 
 ### Patreon Me !!!
 If you want to support this project [Patreon Me!](https://www.patreon.com/s4kibs4mi)
+
+### Buy Me a Coffee
+[Checkout with Paypal](https://www.paypal.me/s4kib/10)
