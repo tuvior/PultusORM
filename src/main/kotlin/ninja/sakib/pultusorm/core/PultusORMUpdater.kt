@@ -1,5 +1,8 @@
 package ninja.sakib.pultusorm.core
 
+import org.sqlite.date.DateFormatUtils
+import java.util.*
+
 /**
  * := Coded with love by Sakib Sami on 10/5/16.
  * := s4kibs4mi@gmail.com
@@ -53,12 +56,17 @@ class PultusORMUpdater private constructor(condition: PultusORMCondition?, updat
          *  @param newValue new value of the field
          *  return Builder
          */
-        fun set(fieldName: String, newValue: Any): Builder {
+        fun set(fieldName: String, newValue: Any?): Builder {
             addSeparator()
 
-            if (newValue is String)
-                updateQuery.append("$fieldName = '$newValue'")
-            else updateQuery.append("$fieldName = $newValue")
+            when (newValue) {
+                null -> updateQuery.append("$fieldName = NULL")
+                is String -> updateQuery.append("$fieldName = '$newValue'")
+                is Boolean -> updateQuery.append("$fieldName = ${if (newValue) "1" else "0"}")
+                is Date -> updateQuery.append("$fieldName = ${DateFormatUtils.format(newValue, "yyyy-MM-dd HH:mm:ss.SSS")}")
+                else -> updateQuery.append("$fieldName = $newValue")
+            }
+
             return this
         }
 
