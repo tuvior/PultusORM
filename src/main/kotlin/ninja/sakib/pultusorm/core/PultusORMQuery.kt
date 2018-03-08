@@ -131,7 +131,7 @@ class PultusORMQuery(connection: Connection) {
             statement.execute(Builder().update(clazz, updateQuery))
             return true
         } catch (exception: Exception) {
-            throwback("Malformed update query.")
+            throwback("Malformed update query. (${exception.message})")
         }
         return false
     }
