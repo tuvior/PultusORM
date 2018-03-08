@@ -63,7 +63,7 @@ class PultusORMUpdater private constructor(condition: PultusORMCondition?, updat
                 null -> updateQuery.append("$fieldName = NULL")
                 is String -> updateQuery.append("$fieldName = '$newValue'")
                 is Boolean -> updateQuery.append("$fieldName = ${if (newValue) "1" else "0"}")
-                is Date -> updateQuery.append("$fieldName = ${DateFormatUtils.format(newValue, "yyyy-MM-dd HH:mm:ss.SSS")}")
+                is Date -> updateQuery.append("$fieldName = '${DateFormatUtils.format(newValue, "yyyy-MM-dd HH:mm:ss.SSS")}'")
                 else -> updateQuery.append("$fieldName = $newValue")
             }
 
