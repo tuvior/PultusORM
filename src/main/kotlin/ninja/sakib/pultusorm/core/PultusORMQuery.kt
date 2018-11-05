@@ -400,14 +400,13 @@ class PultusORMQuery(connection: Connection) {
         }
 
         fun update(clazz: Any, updateQuery: PultusORMUpdater): String {
-            val query: StringBuilder = StringBuilder()
-            query.append("UPDATE ${clazz.javaClass.simpleName} SET ")
-            query.append(updateQuery.updateQuery())
-            if (updateQuery.condition() != null)
-                query.append(" ${updateQuery.condition()!!.rawQuery()}")
-            query.append(";")
-
-            return query.toString()
+            return buildString {
+                append("UPDATE ${clazz.javaClass.simpleName} SET ")
+                append(updateQuery.updateQuery())
+                if (updateQuery.condition() != null)
+                    append(" ${updateQuery.condition()!!.rawQuery()}")
+                append(";")
+            }
         }
 
         fun delete(clazz: Any): String {
